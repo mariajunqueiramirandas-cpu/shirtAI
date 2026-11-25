@@ -1,0 +1,51 @@
+services:
+  shirtai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    init: true
+    stop_grace_period: 30s
+    expose:
+      - "8787"
+    environment:
+      NODE_ENV: production
+      HOST: "0.0.0.0"
+      PORT: "8787"
+      STORAGE_DIR: /app/data/storage
+      DATABASE_PATH: /app/data/shirtai.sqlite
+      WEB_DIST_DIR: /app/apps/web/dist
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+      MISTRAL_API_KEY: ${MISTRAL_API_KEY:-}
+      MESHY_API_KEY: ${MESHY_API_KEY:-}
+      MISTRAL_MODEL: ${MISTRAL_MODEL:-deepseek-v4-1-flash-1017}
+      MESHY_DRAFT_MODEL: ${MESHY_DRAFT_MODEL:-gpt-image-2-6-flare}
+      MESHY_MASTER_MODEL: ${MESHY_MASTER_MODEL:-gpt-image-2-6-sunburst}
+    volumes:
+      - shirtai_data:/app/data
+    networks:
+      - dokploy-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "bun",
+          "-e",
+          "const r = await fetch('http://127.0.0.1:8787/health'); if (!r.ok) process.exit(1);",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  shirtai_data:
+
+networks:
+  dokploy-network:
+    external: true

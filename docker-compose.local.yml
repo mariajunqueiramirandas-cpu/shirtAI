@@ -1,0 +1,11 @@
+# Local override for testing Docker Compose outside Dokploy:
+#   docker compose -f docker-compose.yml -f docker-compose.local.yml up --build
+services:
+  shirtai:
+    ports:
+      - "8787:8787"
+    networks: !override
+      - default
+
+networks:
+  dokploy-network: !reset null

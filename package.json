@@ -1,0 +1,14 @@
+{
+  "name": "shirtai",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "bun --cwd apps/api dev",
+    "dev:web": "bun --cwd apps/web dev",
+    "build": "bun --cwd apps/web build",
+    "typecheck": "bun --cwd packages/shared typecheck && bun --cwd apps/api typecheck && bun --cwd apps/web typecheck"
+  }
+}
