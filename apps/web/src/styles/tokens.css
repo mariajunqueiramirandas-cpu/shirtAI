@@ -1,0 +1,44 @@
+:root {
+  /* Palette: Grip-Tape Obsidian + Chalk White + Liturgical Crimson */
+  --bg: #0b0c0e;
+  --surface: #121418;
+  --surface-subtle: #171a20;
+  --surface-hover: #1d2129;
+  --hairline: #242832;
+  --hairline-strong: #343a47;
+
+  --text: #f4f5f6;
+  --text-muted: #9ca3af;
+  --text-dim: #7b8391;
+
+  --accent: #d9232e;
+  --accent-hover: #ee333f;
+  --accent-soft: rgba(217, 35, 46, 0.14);
+
+  /* Semantic dashboard QC states only */
+  --status-pass: #34d399;
+  --status-warn: #f59e0b;
+  --status-fail: #f87171;
+  --status-active: #e5e7eb;
+
+  /* Strictly 2 font families across the entire app */
+  --font-display: "Barlow Condensed", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Strict 3-size body scale below hero (+ 4th compact step for dense studio tables only) */
+  --text-heading: clamp(1.85rem, 3.2vw, 2.75rem);
+  --text-body: 1.0625rem;
+  --text-sm: 0.875rem;
+  --text-table: 0.8125rem;
+
+  /* Layout rhythm */
+  --max-width: 1320px;
+  --gutter: clamp(1.25rem, 3.5vw, 3rem);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-mid: 220ms;
+}
